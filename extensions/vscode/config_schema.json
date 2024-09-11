@@ -193,7 +193,8 @@
             "watsonx",
             "openrouter",
             "nvidia",
-            "vllm"
+            "vllm",
+            "cloudera"
           ],
           "markdownEnumDescriptions": [
             "### OpenAI\nUse gpt-4, gpt-3.5-turbo, or any other OpenAI model. See [here](https://openai.com/product#made-for-developers) to obtain an API key.\n\n> [Reference](https://docs.continue.dev/reference/Model%20Providers/openai)",
@@ -223,7 +224,8 @@
             "### IBM watsonx\nwatsonx, developed by IBM, offers a variety of pre-trained AI foundation models that can be used for natural language processing (NLP), computer vision, and speech recognition tasks.",
             "### OpenRouter\nOpenRouter offers a single API to access almost any language model. To get started, obtain an API key from [their console](https://openrouter.ai/settings/keys).",
             "### NVIDIA NIMs\nNVIDIA offers a single API to access almost any language model. To find out more, visit the [LLM APIs Documentation](https://docs.api.nvidia.com/nim/reference/llm-apis).\nFor information specific to getting a key, please check out the [docs here](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html#option-1-from-api-catalog)",
-            "### vLLM\nvLLM is a highly performant way of hosting LLMs for a team. To get started, follow their [quickstart](https://docs.vllm.ai/en/latest/getting_started/quickstart.html) to set up your server."
+            "### vLLM\nvLLM is a highly performant way of hosting LLMs for a team. To get started, follow their [quickstart](https://docs.vllm.ai/en/latest/getting_started/quickstart.html) to set up your server.",
+            "### Cloudera AI Inference (CAII)  \nUse llama-31-8b-instruct, or any other CAII model. See [here](https://docs.cloudera.com/cdp-public-cloud/cloud/cli/topics/mc-cli-generating-an-api-access-key.html) to obtain an API key.\n\n> [Reference](https://docs.continue.dev/reference/Model%20Providers/cloudera)"
           ],
           "type": "string"
         },
@@ -398,7 +400,8 @@
                   "huggingface-inference-api",
                   "replicate",
                   "together",
-                  "cloudflare"
+                  "cloudflare",
+                  "cloudera"
                 ]
               }
             },
