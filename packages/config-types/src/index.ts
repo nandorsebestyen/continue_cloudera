@@ -55,7 +55,7 @@ export const modelDescriptionSchema = z.object({
     "cloudflare",
     "azure",
     "continue-proxy",
-    "cloudera"
+    "cloudera",
   ]),
   model: z.string(),
   apiKey: z.string().optional(),

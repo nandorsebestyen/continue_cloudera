@@ -78,7 +78,7 @@ function AddNewModel() {
           onClick={() => navigate("/")}
           className="inline-block ml-4 cursor-pointer"
         />
-        <h3 className="text-lg font-bold m-2 inline-block">Add a new model</h3>
+        <h3 className="text-lg font-bold m-2 inline-block">Add a new model nandi</h3>
       </div>
       <br />
       <div className="px-6">

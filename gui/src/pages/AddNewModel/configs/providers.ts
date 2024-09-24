@@ -42,6 +42,26 @@ const openSourceModels = Object.values(models).filter(
   ({ isOpenSource }) => isOpenSource,
 );
 
+function getCDPToken(): Promise<string> {
+  /**
+   * Return a CDP Token
+   *
+   * @returns A token.
+   */
+  return new Promise((resolve, reject) => {
+    const childProcess = require('child_process');
+    const cdpCommand = "cdp iam generate-workload-auth-token --workload-name DE --profile prod"
+    childProcess.exec(cdpCommand, (error, stdout, stderr) => {
+      if (error) {
+        reject(`Error executing command: ${error}`);
+      } else {
+        resolve(stdout);
+      }
+    });
+  });
+}
+
+
 export const apiBaseInput: InputDescriptor = {
   inputType: "text",
   key: "apiBase",
@@ -581,21 +601,19 @@ To get started, [register](https://dataplatform.cloud.ibm.com/registration/stepo
     collectInputFor: [...completionParamsInputsConfigs],
   },
   cloudera: {
-    title: "cloudera",
+    title: "Cloudera n",
     provider: "cloudera",
     refPage: "cloudera",
     description: "Use your custom LLM model for Chat or Autocomplete served By Cloudera",
-    longDescription: `**Cloudera CAII** - Cloudera AI Inference. CAII, developed by Cloudera, offers quality model serving platform usable for pre-trained AI foundation models that can be used for natural language processing (NLP) tasks.
+    longDescription: `**Cloudera AI Inference** - CAII, developed by Cloudera, offers quality model serving platform usable for pre-trained AI foundation models that can be used for natural language processing (NLP) tasks.
 
-To get started, register on CAII , create your first project and setup an API key.
+[Read More about Cloudera Inference ](https://blog.cloudera.com/cloudera-introduces-ai-inference-service-with-nvidia-nim/)
+To get started, set up your running model endpoint with CAII, and setup an API key.
 
-1. Set up and serve your own CAII model:
-2. https://blog.cloudera.com/cloudera-introduces-ai-inference-service-with-nvidia-nim/
+1. Set up and serve your own CAII model:<<more info needed here>>
 3. Set your model endpoint
-4. Set your CDP TOKEN key use CDP CLI 
-5. Enjoy the chat and autocomplete functions
-
-After it's up and running, you can start using Continue.`,
+4. Set your CDP TOKEN key use CDP CLI <<more info needed hee>>
+5. Enjoy the code assistance`,
     icon: "cloudera.png",
     tags: [ModelProviderTags.RequiresApiKey],
     packages: [
@@ -603,9 +621,9 @@ After it's up and running, you can start using Continue.`,
         ...models.AUTODETECT,
         params: {
           ...models.AUTODETECT.params,
-          title: "Cloudera CAII",
+          title: "Cloudera Nandi CAII",
           apiBase: "",
-          apiKey: ""
+          apiKey: getCDPToken(),
         },
       },
     ],
@@ -622,9 +640,15 @@ After it's up and running, you can start using Continue.`,
         key: "apiKey",
         label: "CAII API Key",
         placeholder: "Enter your Cloudera CDP token ",
-        required: true,
+        required: false,
       },
-      ...completionParamsInputsConfigs,
+      {
+        inputType: "text",
+        key: "valamikey",
+        label: "valami label",
+        placeholder: "valami placeholder",
+        required: true
+      },
     ],
   },
 };
