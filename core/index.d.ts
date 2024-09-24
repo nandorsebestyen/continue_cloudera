@@ -638,7 +638,8 @@ type ModelProvider =
   | "openrouter"
   | "nvidia"
   | "vllm"
-  | "mock";
+  | "mock"
+  | "cloudera";
 
 export type ModelName =
   | "AUTODETECT"

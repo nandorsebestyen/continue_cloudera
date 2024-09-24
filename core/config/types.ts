@@ -600,7 +600,8 @@ declare global {
     | "msty"
     | "watsonx"
     | "openrouter"
-    | "nvidia";
+    | "nvidia",
+    | "cloudera";
 
   export type ModelName =
     | "AUTODETECT"

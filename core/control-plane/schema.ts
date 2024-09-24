@@ -16,6 +16,7 @@ const modelDescriptionSchema = z.object({
     "sagemaker",
     "cloudflare",
     "azure",
+    "cloudera",
   ]),
   model: z.string(),
   apiKey: z.string().optional(),

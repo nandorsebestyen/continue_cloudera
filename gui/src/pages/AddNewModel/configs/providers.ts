@@ -580,4 +580,51 @@ To get started, [register](https://dataplatform.cloud.ibm.com/registration/stepo
     ],
     collectInputFor: [...completionParamsInputsConfigs],
   },
+  cloudera: {
+    title: "cloudera",
+    provider: "cloudera",
+    refPage: "cloudera",
+    description: "Use your custom LLM model for Chat or Autocomplete served By Cloudera",
+    longDescription: `**Cloudera CAII** - Cloudera AI Inference. CAII, developed by Cloudera, offers quality model serving platform usable for pre-trained AI foundation models that can be used for natural language processing (NLP) tasks.
+
+To get started, register on CAII , create your first project and setup an API key.
+
+1. Set up and serve your own CAII model:
+2. https://blog.cloudera.com/cloudera-introduces-ai-inference-service-with-nvidia-nim/
+3. Set your model endpoint
+4. Set your CDP TOKEN key use CDP CLI 
+5. Enjoy the chat and autocomplete functions
+
+After it's up and running, you can start using Continue.`,
+    icon: "cloudera.png",
+    tags: [ModelProviderTags.RequiresApiKey],
+    packages: [
+      {
+        ...models.AUTODETECT,
+        params: {
+          ...models.AUTODETECT.params,
+          title: "Cloudera CAII",
+          apiBase: "",
+          apiKey: ""
+        },
+      },
+    ],
+    collectInputFor: [
+      {
+        inputType: "text",
+        key: "apiBase",
+        label: "CAII Model URL",
+        placeholder: "e.g. https://ml-97b60e19-d90.eng-ml-i.svbr-nqvp.int.cldr.work/namespaces/serving-default/endpoints/llama-31-8b-instruct-a10gx2/v1/",
+        required: true
+      },
+      {
+        inputType: "text",
+        key: "apiKey",
+        label: "CAII API Key",
+        placeholder: "Enter your Cloudera CDP token ",
+        required: true,
+      },
+      ...completionParamsInputsConfigs,
+    ],
+  },
 };

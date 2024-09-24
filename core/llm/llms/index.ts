@@ -41,6 +41,7 @@ import Together from "./Together";
 import Vllm from "./Vllm";
 import WatsonX from "./WatsonX";
 import ContinueProxy from "./stubs/ContinueProxy";
+import Cloudera from "./Cloudera";
 
 const LLMs = [
   Anthropic,
@@ -76,6 +77,7 @@ const LLMs = [
   Nvidia,
   Vllm,
   Mock,
+  Cloudera,
 ];
 
 export async function llmFromDescription(
