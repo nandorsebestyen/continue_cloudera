@@ -41,6 +41,29 @@ const openSourceModels = Object.values(models).filter(
   ({ isOpenSource }) => isOpenSource,
 );
 
+//function getCDPToken(): Promise<string> {
+  /**
+   * Return a CDP Token
+   *
+   * @returns A token.
+   */
+  //return new Promise((resolve, reject) => {
+  //  const childProcess = require('child_process');
+  //  const cdpCommand = "cdp iam generate-workload-auth-token --workload-name DE --profile prod"
+  //  childProcess.exec(cdpCommand, (error, stdout, stderr) => {
+  //    if (error) {
+  //      reject(`Error executing command: ${error}`);
+  //    } else {
+  //      resolve(stdout);
+  //    }
+  //  });
+
+//}
+
+function getCDPToken(): string {
+    return "Hello, N!";
+}
+
 export const apiBaseInput: InputDescriptor = {
   inputType: "text",
   key: "apiBase",
@@ -900,5 +923,54 @@ To get started, [register](https://dataplatform.cloud.ibm.com/registration/stepo
       models.Llama31Nemotron_70b,
     ],
     apiKeyUrl: "https://cloud.siliconflow.cn/account/ak",
+  },
+  cloudera: {
+    title: "Cloudera n",
+    provider: "cloudera",
+    refPage: "cloudera",
+    description: "Use your custom LLM model for Chat or Autocomplete served By Cloudera",
+    longDescription: `**Cloudera AI Inference** - CAII, developed by Cloudera, offers quality model serving platform usable for pre-trained AI foundation models that can be used for natural language processing (NLP) tasks.
+[Read More about Cloudera Inference ](https://blog.cloudera.com/cloudera-introduces-ai-inference-service-with-nvidia-nim/)
+To get started, set up your running model endpoint with CAII, and setup an API key.
+1. Set up and serve your own CAII model:<<more info needed here>>
+3. Set your model endpoint
+4. Set your CDP TOKEN key use CDP CLI <<more info needed hee>>
+5. Enjoy the code assistance`,
+    icon: "cloudera.png",
+    tags: [ModelProviderTags.RequiresApiKey],
+    packages: [
+      {
+        ...models.AUTODETECT,
+        params: {
+          ...models.AUTODETECT.params,
+          title: "Cloudera Nandi CAII",
+          apiBase: "",
+          apiKey: getCDPToken(),
+        },
+      },
+    ],
+    collectInputFor: [
+      {
+        inputType: "text",
+        key: "apiBase",
+        label: "CAII Model URL",
+        placeholder: "e.g. https://ml-97b60e19-d90.eng-ml-i.svbr-nqvp.int.cldr.work/namespaces/serving-default/endpoints/llama-31-8b-instruct-a10gx2/v1/",
+        required: true
+      },
+      {
+        inputType: "text",
+        key: "apiKey",
+        label: "CAII API Key",
+        placeholder: "Enter your Cloudera CDP token ",
+        required: false,
+      },
+      {
+        inputType: "text",
+        key: "valamikey",
+        label: "valami label",
+        placeholder: "valami placeholder",
+        required: true
+      },
+    ],
   },
 };
