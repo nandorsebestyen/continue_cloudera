@@ -16,3 +16,7 @@ class Calculator:
 
     def get_result(self):
         return self.result
+
+    def subtract(a, b):
+        
+

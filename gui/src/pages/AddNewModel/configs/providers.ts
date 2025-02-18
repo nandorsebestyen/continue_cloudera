@@ -4,6 +4,8 @@ import { FREE_TRIAL_LIMIT_REQUESTS } from "../../../util/freeTrial";
 import { completionParamsInputs } from "./completionParamsInputs";
 import type { ModelPackage } from "./models";
 import { models } from "./models";
+import Cloudera from "core/llm/llms/Cloudera";
+
 
 export interface InputDescriptor {
   inputType: HTMLInputTypeAttribute;
@@ -33,13 +35,26 @@ export interface ProviderInfo {
   refPage?: string;
   apiKeyUrl?: string;
   downloadUrl?: string;
+  apiKeyGenerator?: ()=>string;
 }
+
+
 
 const completionParamsInputsConfigs = Object.values(completionParamsInputs);
 
 const openSourceModels = Object.values(models).filter(
   ({ isOpenSource }) => isOpenSource,
 );
+
+function getCDPToken(): string {
+
+  let cdp_token = "before";
+
+  //return "Hello, N key!";
+
+  return cdp_token;
+
+}
 
 export const apiBaseInput: InputDescriptor = {
   inputType: "text",
@@ -912,5 +927,55 @@ To get started, [register](https://dataplatform.cloud.ibm.com/registration/stepo
       models.Llama31Nemotron_70b,
     ],
     apiKeyUrl: "https://cloud.siliconflow.cn/account/ak",
+  },
+  cloudera: {
+    title: "cloudera wow",
+    provider: "cloudera",
+    refPage: "cloudera",
+    description: "Use your custom LLM model for Chat or Autocomplete served By Cloudera",
+    longDescription: `**Cloudera AI Inference** - CAII, developed by Cloudera, offers quality model serving platform usable for pre-trained AI foundation models that can be used for natural language processing (NLP) tasks.`,
+    icon: "cloudera.png",
+    tags: [ModelProviderTags.RequiresApiKey],
+    packages: [
+      {
+        ...models.AUTODETECT,
+        params: {
+          ...models.AUTODETECT.params,
+          title: "cloudera title 2 sehol nem jelenik meg",
+        },
+      },
+    ],
+    apiKeyGenerator: getCDPToken,
+    collectInputFor: [
+      {
+        inputType: "text",
+        key: "apiBase",
+        label: "CAII Model URLl1",
+        placeholder: "e.g. https://ml-97b60e19-d90.eng-ml-i.svbr-nqvp.int.cldr.work/namespaces/serving-default/endpoints/llama-31-8b-instruct-a10gx2/v1/",
+        required: true
+      },
+      {
+        inputType: "text",
+        key: "vmi1",
+        label: "CAII Model URLl1",
+        placeholder: "vmi1 ",
+        required: true
+      },
+      {
+        inputType: "text",
+        key: "vmi2",
+        label: "CAII Model URLl2",
+        placeholder: "vmi 2",
+        required: true
+      },
+      {
+        inputType: "text",
+        key: "apiKey",
+        label: "apiKey",
+        placeholder: "apiKey",
+        required: false
+      },
+      ...completionParamsInputsConfigs,
+    ],
   },
 };

@@ -14,7 +14,7 @@ import {
 import { FREE_TRIAL_LIMIT_REQUESTS, hasPassedFTL } from "../util/freeTrial";
 import { completionParamsInputs } from "../pages/AddNewModel/configs/completionParamsInputs";
 import { setDefaultModel } from "../redux/slices/configSlice";
-import { DisplayInfo } from "../pages/AddNewModel/configs/models";
+import { DisplayInfo, ModelPackage } from "../pages/AddNewModel/configs/models";
 
 interface QuickModelSetupProps {
   onDone: () => void;
@@ -94,12 +94,22 @@ function AddModelForm({
   }, [selectedProvider]);
 
   function onSubmit() {
-    const apiKey = formMethods.watch("apiKey");
+
+    let apiKey = formMethods.watch("apiKey");
+
+    if ( selectedProvider.provider === "cloudera"
+    ) {
+      apiKey = selectedProvider.apiKeyGenerator ? selectedProvider.apiKeyGenerator() : "";
+    }
+
+   
     const hasValidApiKey = apiKey !== undefined && apiKey !== "";
     const reqInputFields: Record<string, any> = {};
     for (let input of selectedProvider.collectInputFor ?? []) {
       reqInputFields[input.key] = formMethods.watch(input.key);
     }
+
+
 
     const model = {
       ...selectedProvider.params,
@@ -109,6 +119,11 @@ function AddModelForm({
       title: selectedModel.title,
       ...(hasValidApiKey ? { apiKey } : {}),
     };
+
+    //if ( selectedProvider.provider === "cloudera"
+    //) {
+    //  apiKey == "nandikey";
+    //}
 
     ideMessenger.post("config/addModel", { model });
     ideMessenger.post("config/openProfile", {
@@ -290,10 +305,17 @@ function AddModelForm({
 
           <div className="mt-4 w-full">
             <Button type="submit" className="w-full" disabled={isDisabled()}>
-              Connect
+              Connect 1234
             </Button>
             <AddModelButtonSubtext />
           </div>
+          <div className="mt-4 w-full">
+            {selectedProvider.apiKeyUrl}
+          </div>
+          <div className="mt-4 w-full">
+            {selectedProvider.packages.map((element:ModelPackage)=><div>{element.title}</div>)}
+          </div>
+          
         </div>
       </form>
     </FormProvider>

@@ -9,6 +9,7 @@ export default defineConfig({
     // Change the output .js filename to not include a hash
     rollupOptions: {
       // external: ["vscode-webview"],
+      //external: ["child_process"], // Prevents Rollup from trying to bundle it
       output: {
         entryFileNames: `assets/[name].js`,
         chunkFileNames: `assets/[name].js`,
