@@ -53,6 +53,7 @@ import VertexAI from "./VertexAI";
 import Vllm from "./Vllm";
 import WatsonX from "./WatsonX";
 import xAI from "./xAI";
+import Cloudera from "./Cloudera";
 
 export const LLMClasses = [
   Anthropic,
@@ -100,6 +101,7 @@ export const LLMClasses = [
   xAI,
   SiliconFlow,
   Scaleway,
+  Cloudera,
 ];
 
 export async function llmFromDescription(

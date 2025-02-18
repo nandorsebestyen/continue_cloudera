@@ -19,6 +19,7 @@ const modelDescriptionSchema = z.object({
     "nebius",
     "siliconflow",
     "scaleway",
+    "cloudera",
   ]),
   model: z.string(),
   apiKey: z.string().optional(),

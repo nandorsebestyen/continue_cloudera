@@ -290,10 +290,17 @@ function AddModelForm({
 
           <div className="mt-4 w-full">
             <Button type="submit" className="w-full" disabled={isDisabled()}>
-              Connect
+              Connect 1234
             </Button>
             <AddModelButtonSubtext />
           </div>
+          <div className="mt-4 w-full">
+            {selectedProvider.apiKeyUrl}
+          </div>
+          <div className="mt-4 w-full">
+            {selectedProvider.provider}
+          </div>
+          
         </div>
       </form>
     </FormProvider>
