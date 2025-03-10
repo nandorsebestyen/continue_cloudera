@@ -962,4 +962,31 @@ To get started, [register](https://dataplatform.cloud.ibm.com/registration/stepo
     ],
     apiKeyUrl: "https://cloud.siliconflow.cn/account/ak",
   },
+  cloudera: {
+    title: "cloudera",
+    provider: "cloudera",
+    refPage: "cloudera",
+    description: "Use your custom LLM model for Chat or Autocomplete served By Cloudera",
+    longDescription: `**Cloudera AI Inference** - CAII, developed by Cloudera, offers quality model serving platform usable for pre-trained AI foundation models that can be used for natural language processing (NLP) tasks.`,
+    icon: "cloudera.png",
+    packages: [
+      {
+        ...models.AUTODETECT,
+        params: {
+          ...models.AUTODETECT.params,
+          title: "cloudera title 2 sehol nem jelenik meg",
+        },
+      },
+    ],
+    collectInputFor: [
+      {
+        inputType: "text",
+        key: "apiBase",
+        label: "CAII Model URLl1",
+        placeholder: "e.g. https://ml-97b60e19-d90.eng-ml-i.svbr-nqvp.int.cldr.work/namespaces/serving-default/endpoints/llama-31-8b-instruct-a10gx2/v1/",
+        required: true
+      },
+      ...completionParamsInputsConfigs,
+    ],
+  },
 };

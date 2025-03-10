@@ -58,6 +58,7 @@ export const modelDescriptionSchema = z.object({
     "continue-proxy",
     "nebius",
     "scaleway",
+    "cloudera"
   ]),
   model: z.string(),
   apiKey: z.string().optional(),
